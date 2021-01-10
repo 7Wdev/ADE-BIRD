@@ -28,10 +28,10 @@ var firebaseConfig =
           }
 ```
 ```
-      const flappy = new Image();
-      flappy.src = "your flappy image src";
-      const img = new Image();
-      img.src = "your background image src";
+const flappy = new Image();
+flappy.src = "your flappy image src";
+const img = new Image();
+img.src = "your background image src";
 ```
 3-enjoy !
 
