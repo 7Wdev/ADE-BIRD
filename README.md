@@ -21,10 +21,10 @@ var firebaseConfig =
  function uploadPressed()
           {
               firebase.storage().ref("your path").put(file).then(function()
-                                                                        {
-                                                                            console.log("upload success");
-                                                                            firebase.storage().ref("your path").getDownloadURL().then(urrl => { flappy.src = urrl; });
-                                                                        });
+                {
+                console.log("upload success");
+                firebase.storage().ref("your path").getDownloadURL().then(urrl => { flappy.src = urrl; });
+                });
           }
 ```
 ```
