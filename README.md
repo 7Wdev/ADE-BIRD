@@ -26,13 +26,18 @@ var firebaseConfig =
                                                                             firebase.storage().ref("your path").getDownloadURL().then(urrl => { flappy.src = urrl; });
                                                                         });
           }
-          //etc......
+```
+```
+      const flappy = new Image();
+      flappy.src = "your flappy image src";
+      const img = new Image();
+      img.src = "your background image src";
 ```
 3-enjoy !
 
 I just coded this for fun :], Supported Browsers : Chrome, IE, Microsoft Edge,
 
-simple flappy bird game with custom skins coded using HTML,JS,CSS and it uses FIREBASE for storing data.
+Simple flappy bird game with custom skins coded using HTML,JS,CSS and it uses FIREBASE for storing data.
 
 
 
