@@ -39,6 +39,8 @@ I just coded this for fun :], Supported Browsers : Chrome, IE, Microsoft Edge,
 
 Simple flappy bird game with custom skins coded using HTML,JS,CSS and it uses FIREBASE for storing data.
 
+Try Out The Game : [link](#)
+
 
 
 ![](preview.png)
