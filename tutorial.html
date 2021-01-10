@@ -1,0 +1,127 @@
+<!-- I just coded this for fun :] -->
+<!-- 7WDEV -->
+<!-- Supported Browsers : Chrome, IE, Microsoft Edge -->
+<!-- simple flappy bird game with custom skins coded using HTML,JS,CSS and it uses FIREBASE for storing data -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Ade Bird </title>
+</head>
+<body style="height: 100vh; background: rgb(0, 0, 0); text-align: center;">
+
+    <style>
+        canvas
+          {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+          }
+
+        body::-webkit-scrollbar
+          {
+              display: none;
+          }
+        
+        body
+          {
+              -ms-overflow-style: none;
+              scrollbar-width: none;
+          }
+    </style>
+    
+    <canvas id="canvas" width="800" height="800"></canvas>
+    <input type="file"  onchange="ChooseFile(event)"/>
+    <button id="upload" onclick="uploadPressed()">upload your image</button>
+   
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-storage.js"></script>
+    <script>
+      var firebaseConfig =
+        {
+            apiKey: "your firebase api key",
+            authDomain: "your firebase auth domain",
+            projectId: "your firebase project id",
+            storageBucket: "your firebase storage bucket",
+            messagingSenderId: "yours...",
+            appId: "yours...",
+            measurementId: "yours..."
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        //simple upload system
+        let file = {};
+        function ChooseFile(e)
+          {
+            file = e.target.files[0];
+          }
+
+        function uploadPressed()
+          {
+              firebase.storage().ref("your path").put(file).then(function()
+                                                                        {
+                                                                            console.log("upload success");
+                                                                            firebase.storage().ref("your path").getDownloadURL().then(urrl => { flappy.src = urrl; });
+                                                                        });
+          }
+
+      var hi;
+      dm = canvas.getContext("2d");
+      dm.font = '16px Boogaloo';
+      const flappy = new Image();
+      flappy.src = "your flappy image src";
+      const img = new Image();
+      img.src = "your background image src";
+      flappyX = 96; 
+      flappyDY = score = bestScore = 0;
+      flappyY = 200;
+      i = 400;
+      pipeGap = 400;
+      interval = flappySize = pipeWidth = topPipeBottomY = 54;
+      canvasSize = pipeX = 800;
+      canvas.onclick = () => (flappyDY = 20.345345);
+      window.onkeydown = function(event)
+                           {
+                               if(event.keyCode == 32)
+                                {
+                                    (flappyDY = 20.345345);
+                                }
+                           }
+      setInterval(() =>
+        {
+            //dm.fillStyle = "background";
+            //dm.fillRect(0, 0, canvasSize, canvasSize);
+            pat = dm.createPattern(img, "repeat");
+            const radius = 562;
+            dm.beginPath();
+            dm.fillStyle = pat;
+            dm.arc(400, 400, radius, 0,1000 * Math.PI, false);
+            dm.strokeStyle = "black";
+            dm.fill();
+            dm.stroke();
+            dm.lineWidth = 8;
+
+            //---------gravity---------//
+            flappyY -= flappyDY -= 2.733234343543536536345;
+            if(pipeGap > 95)pipeGap -= Math.random();
+            if(pipeGap <= 94.5)pipeGap = 450;
+            
+            //------------------------//
+            dm.drawImage(flappy, flappyX, flappyY, flappySize * (400 / 400), flappySize);
+            dm.fillStyle = "rgb(0, 0, 0)";
+            pipeX -= ((Math.sqrt(Math.sqrt(score))) * 2.5) + 10;
+            pipeX < -pipeWidth && ((pipeX = canvasSize), (topPipeBottomY = pipeGap * Math.random()));
+            dm.fillRect(pipeX, 0, pipeWidth, topPipeBottomY);
+            dm.fillRect(pipeX, topPipeBottomY + pipeGap, pipeWidth, canvasSize);
+            dm.fillStyle = "rgb(0, 0, 0)"; 
+            dm.fillText(score++, 9, 24);
+            bestScore = bestScore < score ? score : bestScore;
+            dm.fillText(`Best Score: ${bestScore}`, 9, 44);
+            (((flappyY < topPipeBottomY || flappyY > topPipeBottomY + pipeGap) && pipeX < flappySize * (400 / 400)) || flappyY > canvasSize) && ((flappyDY = 0), (flappyY = 200), (pipeX = canvasSize), (score = 0), (pipeGap = 400));
+        }, interval);
+    </script>
+
+</body>
+</html>
