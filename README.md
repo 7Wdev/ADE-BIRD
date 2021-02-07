@@ -47,7 +47,7 @@ Try Out The Game : [link](http://ade-bird.great-site.net/)
 
 
 #### Info
-Name: SYFO-AI
+Name: ADEBIRD
 
 Type: Web Game
 
